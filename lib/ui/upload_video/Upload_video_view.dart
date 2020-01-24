@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:chewie/chewie.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -11,15 +10,14 @@ class UploadVideoView extends StatefulWidget {
   static List<String> downloadURLList;
 
   @override
-  _UploadVideoViewState createState() =>
-      _UploadVideoViewState();
+  _UploadVideoViewState createState() => _UploadVideoViewState();
 }
 
 class _UploadVideoViewState extends State<UploadVideoView> {
-
   File _video;
   StorageTaskSnapshot _taskSnapshot;
   StorageUploadTask _uploadTask;
+  StorageReference _storageReference;
 
   void getImage() async {
     File videoFile = await ImagePicker.pickVideo(source: ImageSource.gallery);
@@ -59,9 +57,11 @@ class _UploadVideoViewState extends State<UploadVideoView> {
                                       FirebaseStorage.instance;
                                   StorageReference storageRef =
                                       firebaseStorage.ref();
-                                  StorageReference storageRefName = storageRef
+                                  _storageReference = storageRef
                                       .child('${Path.basename(_video.path)}');
-                                  _uploadTask = storageRefName.putFile(_video);
+
+                                  _uploadTask =
+                                      _storageReference.putFile(_video);
                                   if (_uploadTask.isInProgress == true) {
                                     Scaffold.of(ctx).showSnackBar(
                                       SnackBar(
@@ -94,7 +94,8 @@ class _UploadVideoViewState extends State<UploadVideoView> {
                                       ),
                                     );
                                   }
-                                  String url = await storageRefName.getDownloadURL();
+                                  String url =
+                                      await _storageReference.getDownloadURL();
                                   setState(() {
                                     UploadVideoView.downloadURLList.add(url);
                                     print(url);

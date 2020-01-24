@@ -10,14 +10,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sowe Apps',
+      title: 'Sowe App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blue),
       routes: <String, WidgetBuilder>{
-        '/homePage': (BuildContext context) => MyHomePage(),
+        '/homePage': (BuildContext context) => HomePageView(),
         '/uploadVideo': (BuildContext context) => UploadVideoView()
       },
-      home: MyHomePage(),
+      home: HomePageView(),
     );
   }
 }
