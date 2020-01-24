@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "57658058775",
+    "firebase_url": "https://testing-c73c9.firebaseio.com",
+    "project_id": "testing-c73c9",
+    "storage_bucket": "testing-c73c9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57658058775:android:c05d01cc0e691aea229452",
+        "android_client_info": {
+          "package_name": "com.sowe.sowe_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57658058775-b9b3nt96uq40uevphlu2omfuuate18ki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDW5WKdUt3wXrI3dEnmdJE3v3o8O3MlyQk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57658058775-b9b3nt96uq40uevphlu2omfuuate18ki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
