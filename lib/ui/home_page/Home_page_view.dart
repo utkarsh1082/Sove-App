@@ -21,6 +21,8 @@ class _HomePageViewState extends State<HomePageView> {
 
     List<VideoListItem> items = HomePageViewModel.items;
 
+    print(items);
+
     return Scaffold(
       appBar: AppBar(
           title: Text("Sowe Apps"),
@@ -39,8 +41,8 @@ class _HomePageViewState extends State<HomePageView> {
               ),
             )
           ]),
-      body: (items == null || items == [])
-          ? Container(
+      body: (items == [] || items == null)
+          ? SingleChildScrollView(
               child: Text("No video uploaded"),
             )
           : new ListView(
@@ -58,7 +60,9 @@ class _HomePageViewState extends State<HomePageView> {
                             label: Text('Delete Video'),
                             icon: Icon(Icons.delete),
                             onPressed: () {
-                              item.delete();
+                              setState(() {
+                                item.delete();
+                              });
                             },
                           ),
                         )

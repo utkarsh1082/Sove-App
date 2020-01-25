@@ -33,7 +33,7 @@ class _UploadVideoViewState extends State<UploadVideoView> {
 
   @override
   Widget build(BuildContext context) {
-    print(UploadVideoView.downloadURLList);
+
     if (UploadVideoView.downloadURLList == null) {
       UploadVideoView.downloadURLList = [];
     }
