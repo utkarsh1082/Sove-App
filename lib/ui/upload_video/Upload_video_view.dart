@@ -4,6 +4,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
+import 'package:sowe_app/ui/upload_video/widgets/SnackBar.dart';
 import 'package:video_player/video_player.dart';
 
 class UploadVideoView extends StatefulWidget {
@@ -33,7 +34,6 @@ class _UploadVideoViewState extends State<UploadVideoView> {
 
   @override
   Widget build(BuildContext context) {
-
     if (UploadVideoView.downloadURLList == null) {
       UploadVideoView.downloadURLList = [];
     }
@@ -63,36 +63,18 @@ class _UploadVideoViewState extends State<UploadVideoView> {
                                   _uploadTask =
                                       _storageReference.putFile(_video);
                                   if (_uploadTask.isInProgress == true) {
-                                    Scaffold.of(ctx).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Video has started uploading...',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    );
+                                    SnackBarPage().showSnackBar(
+                                        ctx, "Video has started uploading");
                                   }
                                   _taskSnapshot = await _uploadTask.onComplete;
-                                  print(_taskSnapshot.bytesTransferred);
+
                                   if (_taskSnapshot.bytesTransferred ==
                                       _taskSnapshot.totalByteCount) {
-                                    Scaffold.of(ctx).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Video is uploaded',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    );
+                                    SnackBarPage()
+                                        .showSnackBar(ctx, "Video is uploaded");
                                   } else {
-                                    Scaffold.of(ctx).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'Video uploading failed',
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      ),
-                                    );
+                                    SnackBarPage().showSnackBar(
+                                        ctx, "Video uploading failed");
                                   }
                                   String url =
                                       await _storageReference.getDownloadURL();
@@ -101,14 +83,8 @@ class _UploadVideoViewState extends State<UploadVideoView> {
                                     print(url);
                                   });
                                 } else {
-                                  Scaffold.of(ctx).showSnackBar(
-                                    SnackBar(
-                                      content: Text(
-                                        'Video size limit exceeded!\n Please limit your video size to 20MB',
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    ),
-                                  );
+                                  SnackBarPage().showSnackBar(ctx,
+                                      "Video size limit exceeded!\n Please limit your video size to 20MB");
                                 }
                               },
                               child: Text("Upload Video"),
