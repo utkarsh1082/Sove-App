@@ -1,6 +1,6 @@
 # sowe_app
 
-A new Flutter application.
+A Flutter application for online uploading, downloading and surfing videos.
 
 ## Getting Started
 
